@@ -58,13 +58,11 @@ function smtp_connector_for_wp_notice()
     }
 }
 
-
 // Include settings page
 require_once(plugin_dir_path(__FILE__) . 'includes/settings-page.php');
 
 // Hook into phpmailer_init
 add_action('phpmailer_init', 'smtp_connector_for_wp_custom_phpmailer');
-
 
 function smtp_connector_for_wp_custom_phpmailer($phpmailer)
 {
