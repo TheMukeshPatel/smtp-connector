@@ -24,9 +24,8 @@ register_activation_hook(__FILE__, 'smtp_connector_for_wp_activation_hook');
  */
 function smtp_connector_for_wp_activation_hook()
 {
-
     /* Create transient data */
-    set_transient('smtp_connector_for_wp-activation-notice', true, 5);
+    set_transient('smtp-connector-for-wp-activation-notice', true, 5);
 }
 
 /* Add admin notice */
@@ -40,7 +39,7 @@ function smtp_connector_for_wp_notice()
 {
 
     /* Check for transient, if available display notice */
-    if (get_transient('smtp_connector_for_wp-activation-notice')) {
+    if (get_transient('smtp-connector-for-wp-activation-notice')) {
         ?>
         <style>
             div#message.updated {
