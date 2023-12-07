@@ -12,7 +12,7 @@ Easily configure custom SMTP settings for your WordPress site with SMTP Connecto
 
 == Description ==
 
-SMTP Connector allows you to set up your custom SMTP settings for your WordPress site. This ensures that your emails are delivered reliably and avoid issues with WordPress's default mail sending function.
+<a href="https://mpateldigital.com/smtp-connector/">SMTP Connector</a> allows you to set up your custom SMTP settings for your WordPress site. This ensures that your emails are delivered reliably and avoid issues with WordPress's default mail sending function.
 
 **Features**:
 * Easy to use settings page.
