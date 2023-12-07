@@ -4,7 +4,7 @@ Tags: smtp, email, mailer, wp mail, custom smtp, gmail smtp, smtp connector, zoh
 Requires at least: 4.6
 Tested up to: 6.4.1
 Requires PHP: 5.6
-Stable tag: 1.0.0
+Stable tag: 1.0.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -39,18 +39,12 @@ Yes, as long as your SMTP service provides the necessary details (host, username
 
 Ensure that your SMTP details are correct. If you're still facing issues, please contact your SMTP service provider for assistance.
 
-== Screenshots ==
-
-1. SMTP Connector settings page.
-
 == Changelog ==
 
 = 1.0.1 =
-*Release Date - 26 Nov 2023*
+*Release Date - 7 Dec 2023*
 
-* New - Added "Send From" option.
-* Improved - Instruction on setting page.
-* Fixed - settings page link on plugin page.
+* Fixed - Some Minor Code Improvements
 
 = 1.0.0 =
 * Initial release.
