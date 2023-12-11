@@ -42,8 +42,10 @@ Ensure that your SMTP details are correct. If you're still facing issues, please
 == Changelog ==
 
 = 1.0.1 =
-*Release Date - 7 Dec 2023*
+*Fix: Missing PHP open tag in index file*
 
+= 1.0.1 =
+*Release Date - 7 Dec 2023*
 * Fixed - Some Minor Code Improvements
 
 = 1.0.0 =
