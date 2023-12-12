@@ -9,7 +9,8 @@ if (!defined('ABSPATH')) {
 
 define('SMTP_SECURITY_KEY', SECURE_AUTH_KEY); // Actual constant security key
 
-function encrypt_password($password) {
+function encrypt_password($password)
+{
     $cipher = 'aes-256-cbc';
     $ivlen = openssl_cipher_iv_length($cipher);
     $iv = openssl_random_pseudo_bytes($ivlen);
@@ -17,7 +18,8 @@ function encrypt_password($password) {
     return base64_encode($iv . $encrypted);
 }
 
-function decrypt_password($encrypted_password) {
+function decrypt_password($encrypted_password)
+{
     $cipher = 'aes-256-cbc';
     $data = base64_decode($encrypted_password);
     $ivlen = openssl_cipher_iv_length($cipher);

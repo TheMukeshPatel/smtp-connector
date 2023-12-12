@@ -2,7 +2,7 @@
 /*
 Plugin Name: SMTP Connector
 Description: A 100% Free SMTP Plugin that Allows you to set a custom SMTP for sending emails in WordPress. Connect Gmail, MailGun, Amazon SES, SendinBlue, Zoho, and More to send Emails in WordPress.
-Version: 1.1.0
+Version: 1.1.0.1
 Author: Mukesh Patel
 Author URI: https://mpateldigital.com/
 Plugin URI: https://mpateldigital.com/smtp-connector/
@@ -18,18 +18,20 @@ if (!defined('ABSPATH')) {
 // Include the encryption and decryption functions
 require_once(plugin_dir_path(__FILE__) . 'includes/encryption-functions.php');
 
-// Include settings page
-require_once(plugin_dir_path(__FILE__) . 'includes/settings-page.php');
-
+// Include settings page only if in admin
+if (is_admin()) {
+    require_once(plugin_dir_path(__FILE__) . 'includes/settings-page.php');
+}
 
 // Support links
-add_filter( 'plugin_action_links_' . plugin_basename(__FILE__), 'smtp_connector_for_wp_add_action_links' );
-function smtp_connector_for_wp_add_action_links( $links ) {
+add_filter('plugin_action_links_' . plugin_basename(__FILE__), 'smtp_connector_for_wp_add_action_links');
+function smtp_connector_for_wp_add_action_links($links)
+{
     $plugin_shortcuts = array(
         '<a rel="noopener" title="Hire for Technical Support" href="https://mpateldigital.com/contact-us/" target="_blank" style="color: #d42e06;font-weight: 500;">' . __('Hire Me', 'smtp_connector_for_wp') . '</a>',
         '<a rel="noopener" title="Show your support" href="https://ko-fi.com/mukeshpatel" target="_blank" style="color:#080;">' . __('Buy developer a coffee', 'smtp_connector_for_wp') . '</a>'
     );
-    return array_merge( $links, $plugin_shortcuts );
+    return array_merge($links, $plugin_shortcuts);
 }
 
 /* Register activation hook. */
