@@ -25,7 +25,7 @@ function smtp_connector_for_wp_settings_register()
         return sanitize_text_field($input);
     }
 
-    // Register each setting with sanitization
+    // Validate and sanitize host, from_name, and username
     register_setting('smtp-connector-for-wp-settings-group', 'smtp_connector_for_wp_host', 'smtp_connector_for_wp_sanitize_option');
     register_setting('smtp-connector-for-wp-settings-group', 'smtp_connector_for_wp_from_name', 'smtp_connector_for_wp_sanitize_option');
     register_setting('smtp-connector-for-wp-settings-group', 'smtp_connector_for_wp_username', 'smtp_connector_for_wp_sanitize_option');
@@ -63,28 +63,28 @@ function smtp_connector_for_wp_settings_page()
                             <tr valign="top">
                                 <th scope="row">SMTP Host</th>
                                 <td><input type="text" name="smtp_connector_for_wp_host"
-                                        value="<?php echo esc_attr(get_option('smtp_connector_for_wp_host')); ?>" /></td>
+                                        value="<?php echo esc_attr(get_option('smtp_connector_for_wp_host')); ?>" required /></td>
                             </tr>
 
                             <tr valign="top">
                                 <th scope="row">From Name</th>
                                 <td><input type="text" placeholder="Enter Website Name"
                                         name="smtp_connector_for_wp_from_name"
-                                        value="<?php echo esc_attr(get_option('smtp_connector_for_wp_from_name')); ?>" />
+                                        value="<?php echo esc_attr(get_option('smtp_connector_for_wp_from_name')); ?>" required />
                                 </td>
                             </tr>
 
                             <tr valign="top">
                                 <th scope="row">SMTP Username</th>
                                 <td><input type="text" name="smtp_connector_for_wp_username"
-                                        value="<?php echo esc_attr(get_option('smtp_connector_for_wp_username')); ?>" />
+                                        value="<?php echo esc_attr(get_option('smtp_connector_for_wp_username')); ?>" required />
                                 </td>
                             </tr>
 
                             <tr valign="top">
                                 <th scope="row">SMTP Password</th>
                                 <td><input type="password" name="smtp_connector_for_wp_password"
-                                        value="<?php echo decrypt_password(get_option('smtp_connector_for_wp_password')); ?>" />
+                                        value="<?php echo decrypt_password(get_option('smtp_connector_for_wp_password')); ?>" required />
                                     <span>Use App Password for <a target="_blank"
                                             href="https://myaccount.google.com/apppasswords">Gmail</a> and <a
                                             target="_blank"
@@ -96,7 +96,7 @@ function smtp_connector_for_wp_settings_page()
                             <tr valign="top">
                                 <th scope="row">SMTP Security</th>
                                 <td>
-                                    <select name="smtp_connector_for_wp_security">
+                                    <select name="smtp_connector_for_wp_security" required>
                                         <option value="tls" <?php selected(get_option('smtp_connector_for_wp_security'), 'tls'); ?>>TLS</option>
                                         <option value="ssl" <?php selected(get_option('smtp_connector_for_wp_security'), 'ssl'); ?>>SSL</option>
                                     </select>
@@ -108,7 +108,7 @@ function smtp_connector_for_wp_settings_page()
                                 <th scope="row">SMTP Port</th>
                                 <td><input type="number" placeholder="587 Most in Cases like Gmail"
                                         name="smtp_connector_for_wp_port"
-                                        value="<?php echo esc_attr(get_option('smtp_connector_for_wp_port')); ?>" />
+                                        value="<?php echo esc_attr(get_option('smtp_connector_for_wp_port')); ?>" required />
                                     <span>Use 587 most in cases. Gmail, Zoho, Sandinblue, Sandgrid etc use this port.</span>
                                 </td>
                             </tr>
