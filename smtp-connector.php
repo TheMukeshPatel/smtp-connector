@@ -26,8 +26,8 @@ require_once(plugin_dir_path(__FILE__) . 'includes/settings-page.php');
 add_filter( 'plugin_action_links_' . plugin_basename(__FILE__), 'smtp_connector_for_wp_add_action_links' );
 function smtp_connector_for_wp_add_action_links( $links ) {
     $plugin_shortcuts = array(
-        '<a rel="noopener" title="Hire for Technical Support" href="https://mpateldigital.net/contact/" target="_blank" style="color: #d42e06;font-weight: 500;">' . __('Hire Me', 'notify_user_on_login') . '</a>',
-        '<a rel="noopener" title="Show your support" href="https://ko-fi.com/mukeshpatel" target="_blank" style="color:#080;">' . __('Buy developer a coffee', 'notify_user_on_login') . '</a>'
+        '<a rel="noopener" title="Hire for Technical Support" href="https://mpateldigital.com/contact-us/" target="_blank" style="color: #d42e06;font-weight: 500;">' . __('Hire Me', 'smtp_connector_for_wp') . '</a>',
+        '<a rel="noopener" title="Show your support" href="https://ko-fi.com/mukeshpatel" target="_blank" style="color:#080;">' . __('Buy developer a coffee', 'smtp_connector_for_wp') . '</a>'
     );
     return array_merge( $links, $plugin_shortcuts );
 }
