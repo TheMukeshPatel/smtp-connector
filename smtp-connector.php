@@ -2,7 +2,7 @@
 /*
 Plugin Name: SMTP Connector
 Description: A 100% Free SMTP Plugin that Allows you to set a custom SMTP for sending emails in WordPress. Connect Gmail, MailGun, Amazon SES, SendinBlue, Zoho, and More to send Emails in WordPress.
-Version: 1.1.0.1
+Version: 1.1.0
 Author: Mukesh Patel
 Author URI: https://mpateldigital.com/
 Plugin URI: https://mpateldigital.com/smtp-connector/
