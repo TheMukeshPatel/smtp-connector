@@ -32,7 +32,6 @@ function smtp_connector_for_wp_add_action_links( $links ) {
     return array_merge( $links, $plugin_shortcuts );
 }
 
-
 /* Register activation hook. */
 register_activation_hook(__FILE__, 'smtp_connector_for_wp_activation_hook');
 
@@ -73,7 +72,6 @@ function smtp_connector_for_wp_notice()
         delete_transient('smtp_connector_for_wp-activation-notice');
     }
 }
-
 
 // Hook into phpmailer_init
 add_action('phpmailer_init', 'smtp_connector_for_wp_custom_phpmailer');
