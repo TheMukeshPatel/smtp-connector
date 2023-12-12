@@ -44,6 +44,7 @@ Ensure that your SMTP details are correct. If you're still facing issues, please
 = 1.1.0 =
 *Added: Now Password saved in the form of encryption*
 *Added: Developer Support Link
+*Fixed: Include settings page only if in admin
 
 = 1.0.1 =
 *Fix: Missing PHP open tag in index file*
