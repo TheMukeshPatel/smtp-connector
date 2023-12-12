@@ -1,5 +1,10 @@
 <?php
 
+// Exit if accessed directly
+if (!defined('ABSPATH')) {
+    exit;
+}
+
 // Include this file where encryption and decryption functions are needed
 
 define('SMTP_SECURITY_KEY', SECURE_AUTH_KEY); // Actual constant security key
