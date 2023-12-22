@@ -44,7 +44,7 @@ register_activation_hook(__FILE__, 'smtp_connector_for_wp_activation_hook');
 function smtp_connector_for_wp_activation_hook()
 {
     /* Create transient data */
-    set_transient('smtp-connector-for-wp-activation-notice', true, 5);
+    set_transient('smtp-connector-for-wp-activation-notice', true, 20);
 }
 
 /* Add admin notice */
@@ -59,19 +59,12 @@ function smtp_connector_for_wp_notice()
     /* Check for transient, if available display notice */
     if (get_transient('smtp-connector-for-wp-activation-notice')) {
         ?>
-        <style>
-            div#message.updated {
-                display: none;
-            }
-        </style>
         <div class="updated notice is-dismissible">
             <p>
-                <?php esc_html_e('😊 Thank you for using Simple SMTP for WP. Please enter your SMTP details on <b><a href="options-general.php?page=smtp-connector-for-wp">Settings page</a></b>', 'smtp_connector_for_wp'); ?>
+                <?php esc_html_e('😊 Thank you for using Simple SMTP for WP. Please enter your SMTP details on Settings > SMTP Connector page', 'smtp_connector_for_wp'); ?>
             </p>
         </div>
         <?php
-        /* Delete transient, only display this notice once. */
-        delete_transient('smtp_connector_for_wp-activation-notice');
     }
 }
 
