@@ -66,7 +66,7 @@ function smtp_connector_for_wp_notice()
         </style>
         <div class="updated notice is-dismissible">
             <p>
-                <?php _e('😊 Thank you for using Simple SMTP for WP. Please enter your SMTP details on <b><a href="options-general.php?page=smtp-connector-for-wp">Settings page</a></b>', 'smtp_connector_for_wp'); ?>
+                <?php esc_html_e('😊 Thank you for using Simple SMTP for WP. Please enter your SMTP details on <b><a href="options-general.php?page=smtp-connector-for-wp">Settings page</a></b>', 'smtp_connector_for_wp'); ?>
             </p>
         </div>
         <?php
