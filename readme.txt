@@ -4,7 +4,7 @@ Tags: smtp, email, mailer, wp mail, custom smtp, gmail smtp, smtp connector, zoh
 Requires at least: 4.6
 Tested up to: 6.4.2
 Requires PHP: 5.6
-Stable tag: 1.1.0
+Stable tag: 1.1.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -40,6 +40,10 @@ Yes, as long as your SMTP service provides the necessary details (host, username
 Ensure that your SMTP details are correct. If you're still facing issues, please contact your SMTP service provider for assistance.
 
 == Changelog ==
+
+= 1.1.0 =
+*Improved security
+*Fixed some bug
 
 = 1.1.0 =
 *Added: Now Password saved in the form of encryption*
