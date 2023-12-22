@@ -38,7 +38,7 @@ function smtp_connector_for_wp_settings_register()
 
 function smtp_connector_for_wp_encrypt_password($password)
 {
-    return encrypt_password($password);
+    return smtp_connector_for_wp_encrypted_password($password);
 }
 
 function smtp_connector_for_wp_settings_page()
@@ -84,7 +84,7 @@ function smtp_connector_for_wp_settings_page()
                             <tr valign="top">
                                 <th scope="row">SMTP Password</th>
                                 <td><input type="password" name="smtp_connector_for_wp_password"
-                                        value="<?php echo decrypt_password(get_option('smtp_connector_for_wp_password')); ?>" required />
+                                        value="<?php echo esc_attr(smtp_connector_for_wp_decrypted_password(get_option('smtp_connector_for_wp_password'))); ?>" required />
                                     <span>Use App Password for <a target="_blank"
                                             href="https://myaccount.google.com/apppasswords">Gmail</a> and <a
                                             target="_blank"
@@ -94,13 +94,13 @@ function smtp_connector_for_wp_settings_page()
                             </tr>
 
                             <tr valign="top">
-                                <th scope="row">SMTP Security</th>
+                                <th scope="row">Encryption Type</th>
                                 <td>
                                     <select name="smtp_connector_for_wp_security" required>
                                         <option value="tls" <?php selected(get_option('smtp_connector_for_wp_security'), 'tls'); ?>>TLS</option>
                                         <option value="ssl" <?php selected(get_option('smtp_connector_for_wp_security'), 'ssl'); ?>>SSL</option>
                                     </select>
-                                    <span>TLS is recommended, use this option for Gmail SMTP etc.</span>
+                                    <span>TLS is recommended. If you choose TLS then it should be set to 587. For SSL use port 465 instead.</span>
                                 </td>
                             </tr>
 
