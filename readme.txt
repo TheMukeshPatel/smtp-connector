@@ -1,6 +1,6 @@
-=== SMTP Connector ===
+=== SMTP Connector - Free Lightweight SMTP for Gmail, MailGun, , Zoho, Microsoft, SendGrid  etc ===
 Contributors: TheMukeshPatel
-Tags: smtp, email, mailer, wp mail, custom smtp, gmail smtp, smtp connector, zoho
+Tags: smtp, email, mailer, wp mail, custom smtp, gmail smtp, smtp connector, zoho, Microsoft, Amazon SES, ses, MailGun. SendGrid
 Requires at least: 4.6
 Tested up to: 6.4.2
 Requires PHP: 5.6
@@ -41,7 +41,11 @@ Ensure that your SMTP details are correct. If you're still facing issues, please
 
 == Changelog ==
 
-= 1.1.0 =
+= 1.1.2 =
+*Fixed: Error while sending emails
+*Fixed: Error while decrypting password
+
+= 1.1.1 =
 *Improved security
 *Fixed some bug
 
