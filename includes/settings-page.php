@@ -84,7 +84,7 @@ function smtp_connector_for_wp_settings_page()
                             <tr valign="top">
                                 <th scope="row">SMTP Password</th>
                                 <td><input type="password" name="smtp_connector_for_wp_password"
-                                        value="<?php echo esc_attr(smtp_connector_for_wp_decrypted_password(get_option('smtp_connector_for_wp_password'))); ?>" required />
+                                        value="<?php echo esc_attr(smtp_connector_for_wp_decrypt_password(get_option('smtp_connector_for_wp_password'))); ?>" required />
                                     <span>Use App Password for <a target="_blank"
                                             href="https://myaccount.google.com/apppasswords">Gmail</a> and <a
                                             target="_blank"
