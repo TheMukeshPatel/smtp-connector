@@ -2,7 +2,7 @@
 /*
 Plugin Name: SMTP Connector
 Description: A 100% Free SMTP Plugin that Allows you to set a custom SMTP for sending emails in WordPress. Connect Gmail, MailGun, Amazon SES, SendinBlue, Zoho, and More to send Emails in WordPress.
-Version: 1.1.1
+Version: 1.1.2
 Author: Mukesh Patel
 Author URI: https://mpateldigital.com/
 Plugin URI: https://mpateldigital.com/smtp-connector/
@@ -44,7 +44,7 @@ register_activation_hook(__FILE__, 'smtp_connector_for_wp_activation_hook');
 function smtp_connector_for_wp_activation_hook()
 {
     /* Create transient data */
-    set_transient('smtp-connector-for-wp-activation-notice', true, 20);
+    set_transient('smtp-connector-for-wp-activation-notice', true, 5);
 }
 
 /* Add admin notice */
@@ -59,9 +59,14 @@ function smtp_connector_for_wp_notice()
     /* Check for transient, if available display notice */
     if (get_transient('smtp-connector-for-wp-activation-notice')) {
         ?>
+        <style>
+            div#message.updated {
+                display: none;
+            }
+        </style>
         <div class="updated notice is-dismissible">
             <p>
-                <?php esc_html_e('😊 Thank you for using Simple SMTP for WP. Please enter your SMTP details on Settings > SMTP Connector page', 'smtp_connector_for_wp'); ?>
+                <?php esc_html_e('😊 Thank you for using Simple SMTP for WP. Please enter your SMTP details on Settings > SMTP Connector', 'smtp_connector_for_wp'); ?>
             </p>
         </div>
         <?php
@@ -78,7 +83,7 @@ function smtp_connector_for_wp_custom_phpmailer($phpmailer)
     $phpmailer->SMTPAuth = true;
     $phpmailer->FromName = get_option('smtp_connector_for_wp_from_name');
     $phpmailer->Username = get_option('smtp_connector_for_wp_username');
-    $phpmailer->Password = decrypt_password(get_option('smtp_connector_for_wp_password'));
+    $phpmailer->Password = smtp_connector_for_wp_decrypt_password(get_option('smtp_connector_for_wp_password'));
     $phpmailer->SMTPSecure = get_option('smtp_connector_for_wp_security');
     $phpmailer->Port = get_option('smtp_connector_for_wp_port');
 }
