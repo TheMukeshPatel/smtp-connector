@@ -50,3 +50,5 @@ if (isset($_POST['smtp_test_email'])) {
         <?php submit_button(__('Send Test Email', 'smtp_connector_for_wp')); ?>
     </form>
 </div>
+
+<!-- End -->
