@@ -4,7 +4,7 @@ Tags: smtp, email, mailer, wp mail, custom smtp, gmail smtp, smtp connector, zoh
 Requires at least: 4.6
 Tested up to: 6.4.2
 Requires PHP: 5.6
-Stable tag: 1.1.1
+Stable tag: 1.2.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -41,7 +41,10 @@ Ensure that your SMTP details are correct. If you're still facing issues, please
 
 == Changelog ==
 
-= 1.1.2 =
+== 1.2.0 ==
+* Added: Email Testing Feature (Thanks for suggestion danilo-tecnosys)
+
+= 1.1.2 ==
 *Fixed: Error while sending emails
 *Fixed: Error while decrypting password
 

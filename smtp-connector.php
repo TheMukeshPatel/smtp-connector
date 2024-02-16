@@ -2,7 +2,7 @@
 /*
 Plugin Name: SMTP Connector
 Description: A 100% Free SMTP Plugin that Allows you to set a custom SMTP for sending emails in WordPress. Connect Gmail, MailGun, Amazon SES, SendinBlue, Zoho, and More to send Emails in WordPress.
-Version: 1.1.2
+Version: 1.2.0
 Author: Mukesh Patel
 Author URI: https://mpateldigital.com/
 Plugin URI: https://mpateldigital.com/smtp-connector/
@@ -99,4 +99,44 @@ function smtp_connector_for_wp_settings_page_link($links)
 $plugin = plugin_basename(__FILE__);
 add_filter("plugin_action_links_$plugin", 'smtp_connector_for_wp_settings_page_link');
 
-// “This is the day you will always remember as the day you almost caught Captain Jack Sparrow.”
+
+// Register the SMTP test page
+add_action('admin_menu', 'smtp_connector_for_wp_add_test_page');
+
+function smtp_connector_for_wp_add_test_page()
+{
+    add_submenu_page(
+        'options-general.php',
+        __('SMTP Test', 'smtp_connector_for_wp'),
+        __('SMTP Test', 'smtp_connector_for_wp'),
+        'manage_options',
+        'smtp-connector-test',
+        'smtp_connector_for_wp_test_page'
+    );
+}
+
+// Callback function for the SMTP test page
+function smtp_connector_for_wp_test_page()
+{
+    include_once(plugin_dir_path(__FILE__) . 'smtp-test.php');
+}
+
+/**
+ * Sends a test email to the specified email address using the configured SMTP settings.
+ *
+ * @param string $email The email address to send the test email to.
+ * @return bool True on success, false on failure.
+ */
+function smtp_connector_for_wp_send_test_email($email)
+{
+    $subject = __('SMTP Test Email', 'smtp_connector_for_wp');
+    $body = __('This is a test email sent using SMTP Connector plugin.', 'smtp_connector_for_wp');
+    $headers = array('Content-Type: text/html; charset=UTF-8');
+
+    // Attempt to send the email using wp_mail() function
+    $result = wp_mail($email, $subject, $body, $headers);
+
+    return $result;
+}
+
+// “This is the day you will always remember as the day you almost caught Captain Jack Sparrow”
