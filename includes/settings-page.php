@@ -27,11 +27,13 @@ function smtp_connector_for_wp_settings_register()
 
     // Validate and sanitize host, from_name, and username
     register_setting('smtp-connector-for-wp-settings-group', 'smtp_connector_for_wp_host', 'smtp_connector_for_wp_sanitize_option');
-    register_setting('smtp-connector-for-wp-settings-group', 'smtp_connector_for_wp_from_name', 'smtp_connector_for_wp_sanitize_option');
     register_setting('smtp-connector-for-wp-settings-group', 'smtp_connector_for_wp_username', 'smtp_connector_for_wp_sanitize_option');
 
     // Use encryption for password
     register_setting('smtp-connector-for-wp-settings-group', 'smtp_connector_for_wp_password', 'smtp_connector_for_wp_encrypt_password');
+
+    register_setting('smtp-connector-for-wp-settings-group', 'smtp_connector_for_wp_from_name', 'smtp_connector_for_wp_sanitize_option');
+    register_setting('smtp-connector-for-wp-settings-group', 'smtp_connector_for_wp_from_email', 'smtp_connector_for_wp_sanitize_option');
     register_setting('smtp-connector-for-wp-settings-group', 'smtp_connector_for_wp_security', 'smtp_connector_for_wp_sanitize_option');
     register_setting('smtp-connector-for-wp-settings-group', 'smtp_connector_for_wp_port', 'smtp_connector_for_wp_sanitize_option');
 }
@@ -71,6 +73,14 @@ function smtp_connector_for_wp_settings_page()
                                 <td><input type="text" placeholder="Enter Website Name"
                                         name="smtp_connector_for_wp_from_name"
                                         value="<?php echo esc_attr(get_option('smtp_connector_for_wp_from_name')); ?>" required />
+                                </td>
+                            </tr>
+
+                            <tr valign="top">
+                                <th scope="row">From Email</th>
+                                <td><input type="text" placeholder="e.g wordpress@example.com"
+                                        name="smtp_connector_for_wp_from_email"
+                                        value="<?php echo esc_attr(get_option('smtp_connector_for_wp_from_email')); ?>" required />
                                 </td>
                             </tr>
 
@@ -136,3 +146,4 @@ function smtp_connector_for_wp_settings_page()
     <?php
 }
 ?>
+<!--  End -->

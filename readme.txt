@@ -2,9 +2,9 @@
 Contributors: TheMukeshPatel
 Tags: smtp, email, mailer, wp mail, custom smtp, gmail smtp, smtp connector, zoho, Microsoft, Amazon SES, ses, MailGun. SendGrid
 Requires at least: 4.6
-Tested up to: 6.4.2
+Tested up to: 6.4.3
 Requires PHP: 5.6
-Stable tag: 1.2.0
+Stable tag: 1.2.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -40,6 +40,10 @@ Yes, as long as your SMTP service provides the necessary details (host, username
 Ensure that your SMTP details are correct. If you're still facing issues, please contact your SMTP service provider for assistance.
 
 == Changelog ==
+
+== 1.2.1 ==
+*Fixed: Error while sending email with Elastic Email due to mission "From Email"
+*Added: "From Email" Option
 
 == 1.2.0 ==
 * Added: Email Testing Feature (Thanks for suggestion danilo-tecnosys)
