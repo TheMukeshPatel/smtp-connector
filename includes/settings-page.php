@@ -146,4 +146,3 @@ function smtp_connector_for_wp_settings_page()
     <?php
 }
 ?>
-<!--  End -->
