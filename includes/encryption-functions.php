@@ -28,5 +28,3 @@ function smtp_connector_for_wp_decrypt_password($password)
     return $decrypted;
 }
 ?>
-
-<!--  End -->
