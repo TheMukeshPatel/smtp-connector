@@ -1,2 +1,2 @@
 <?php
-// Nothing
+/* Nothing is Here */

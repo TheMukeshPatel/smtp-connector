@@ -1,0 +1,863 @@
+/* SMTP Connector admin screens */
+
+.smtp-connector {
+    --sc-ink: #1d2327;
+    --sc-muted: #646970;
+    --sc-line: #dcdcde;
+    --sc-card: #fff;
+    --sc-accent: var(--wp-admin-theme-color, #2271b1);
+    --sc-airmail-red: #d63638;
+    --sc-ok: #00a32a;
+    --sc-ok-ink: #00650f;
+    --sc-ok-tint: #edfaef;
+    --sc-warn: #dba617;
+    --sc-warn-ink: #7a5800;
+    --sc-warn-tint: #fcf9e8;
+    --sc-error: #d63638;
+    --sc-error-ink: #8a2424;
+    --sc-error-tint: #fcf0f1;
+    --sc-mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+    --sc-radius: 8px;
+    --sc-gap: 20px;
+    max-width: 1240px;
+    color: var(--sc-ink);
+}
+
+.smtp-connector [hidden] {
+    display: none !important;
+}
+
+/* Header with the airmail edge */
+
+.smtp-connector-header {
+    position: relative;
+    margin: 12px 0 var(--sc-gap);
+    padding: 20px 24px 0;
+    background: var(--sc-card);
+    border: 1px solid var(--sc-line);
+    border-radius: var(--sc-radius);
+    overflow: hidden;
+}
+
+.smtp-connector-header::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: repeating-linear-gradient(-45deg, var(--sc-airmail-red) 0 12px, #fff 12px 18px, var(--sc-accent) 18px 30px, #fff 30px 36px);
+}
+
+.smtp-connector-header__top {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.smtp-connector-header__brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 0;
+}
+
+.smtp-connector-header__icon {
+    width: 32px;
+    height: 32px;
+    font-size: 32px;
+    color: var(--sc-accent);
+}
+
+.smtp-connector .smtp-connector-header h1 {
+    margin: 0;
+    padding: 0;
+    font-size: 22px;
+    font-weight: 600;
+    line-height: 1.3;
+}
+
+.smtp-connector-header__version {
+    font-family: var(--sc-mono);
+    font-size: 12px;
+    color: var(--sc-muted);
+}
+
+.smtp-connector-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 12px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.smtp-connector-pill::before {
+    content: "";
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: currentColor;
+}
+
+.smtp-connector-pill--active {
+    background: var(--sc-ok-tint);
+    color: var(--sc-ok-ink);
+}
+
+.smtp-connector-pill--inactive {
+    background: var(--sc-warn-tint);
+    color: var(--sc-warn-ink);
+}
+
+.smtp-connector-pill--paused {
+    background: var(--sc-error-tint);
+    color: var(--sc-error-ink);
+}
+
+.smtp-connector-tabs {
+    display: flex;
+    gap: 4px;
+    margin-top: 16px;
+    overflow-x: auto;
+}
+
+.smtp-connector-tabs__item {
+    padding: 10px 14px;
+    border-bottom: 3px solid transparent;
+    color: var(--sc-muted);
+    font-weight: 500;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.smtp-connector-tabs__item:hover {
+    color: var(--sc-ink);
+}
+
+.smtp-connector-tabs__item.is-active {
+    border-bottom-color: var(--sc-accent);
+    color: var(--sc-ink);
+    font-weight: 600;
+}
+
+.smtp-connector-tabs__item:focus {
+    outline: none;
+    box-shadow: inset 0 0 0 2px var(--sc-accent);
+    border-radius: 4px 4px 0 0;
+}
+
+.smtp-connector .notice {
+    margin: 0 0 var(--sc-gap);
+}
+
+/* Layout */
+
+.smtp-connector__layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 320px;
+    gap: var(--sc-gap);
+    align-items: start;
+}
+
+.smtp-connector__aside {
+    position: sticky;
+    top: 52px;
+    display: grid;
+    gap: var(--sc-gap);
+}
+
+@media screen and (max-width: 1100px) {
+    .smtp-connector__layout {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .smtp-connector__aside {
+        position: static;
+        order: -1;
+    }
+
+    .smtp-connector-help {
+        display: none;
+    }
+}
+
+/* Cards */
+
+.smtp-connector-card {
+    margin: 0 0 var(--sc-gap);
+    padding: 20px 24px;
+    background: var(--sc-card);
+    border: 1px solid var(--sc-line);
+    border-radius: var(--sc-radius);
+}
+
+.smtp-connector__aside .smtp-connector-card {
+    margin: 0;
+}
+
+.smtp-connector .smtp-connector-card__title {
+    margin: 0 0 4px;
+    padding: 0;
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.4;
+}
+
+.smtp-connector-card__head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px 16px;
+    margin-bottom: 12px;
+}
+
+.smtp-connector-card__head .smtp-connector-card__title {
+    margin: 0;
+}
+
+.smtp-connector-card__intro {
+    margin: 0 0 16px;
+    color: var(--sc-muted);
+}
+
+.smtp-connector-card--danger {
+    border-color: #f0c5c6;
+}
+
+.smtp-connector-card--danger p {
+    color: var(--sc-muted);
+}
+
+/* Fields */
+
+.smtp-connector-field {
+    margin: 16px 0 0;
+    padding: 0;
+    border: 0;
+    min-width: 0;
+}
+
+.smtp-connector-card__title + .smtp-connector-field {
+    margin-top: 12px;
+}
+
+.smtp-connector-field > label,
+.smtp-connector-field > legend {
+    display: block;
+    margin-bottom: 6px;
+    padding: 0;
+    font-weight: 600;
+}
+
+.smtp-connector-fields {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0 20px;
+}
+
+.smtp-connector-fields .smtp-connector-field--port {
+    max-width: 160px;
+}
+
+.smtp-connector .smtp-connector-input {
+    width: 100%;
+    max-width: none;
+    min-height: 40px;
+    padding: 6px 12px;
+    border-color: #8c8f94;
+    border-radius: 6px;
+}
+
+.smtp-connector .smtp-connector-input--mono {
+    font-family: var(--sc-mono);
+    font-size: 14px;
+}
+
+.smtp-connector .smtp-connector-input--small {
+    width: 96px;
+}
+
+.smtp-connector .smtp-connector-input:focus {
+    border-color: var(--sc-accent);
+    box-shadow: 0 0 0 1px var(--sc-accent);
+}
+
+.smtp-connector .description {
+    margin: 8px 0 0;
+    color: var(--sc-muted);
+}
+
+.smtp-connector-field--inline {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px 10px;
+}
+
+.smtp-connector-field--inline > label {
+    margin: 0;
+}
+
+.smtp-connector-text-error {
+    color: var(--sc-error-ink);
+}
+
+/* Segmented encryption control: real radio buttons, styled as one control */
+
+.smtp-connector-segmented {
+    display: inline-flex;
+    padding: 3px;
+    background: #f0f0f1;
+    border-radius: 8px;
+}
+
+.smtp-connector-segmented input {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.smtp-connector-segmented label {
+    min-width: 64px;
+    padding: 7px 14px;
+    border-radius: 6px;
+    color: var(--sc-muted);
+    font-weight: 600;
+    text-align: center;
+    cursor: pointer;
+}
+
+.smtp-connector-segmented input:checked + label {
+    background: var(--sc-card);
+    color: var(--sc-ink);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.12);
+}
+
+.smtp-connector-segmented input:focus-visible + label {
+    box-shadow: 0 0 0 2px var(--sc-accent);
+}
+
+/* Switches: real checkboxes */
+
+.smtp-connector-switch {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+}
+
+.smtp-connector .smtp-connector-switch__input[type="checkbox"] {
+    appearance: none;
+    position: relative;
+    flex-shrink: 0;
+    width: 40px;
+    height: 22px;
+    margin: 0;
+    border: 0;
+    border-radius: 11px;
+    background: #a7aaad;
+    box-shadow: none;
+    cursor: pointer;
+    transition: background-color 0.15s ease;
+}
+
+.smtp-connector .smtp-connector-switch__input[type="checkbox"]::before {
+    content: "";
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 16px;
+    height: 16px;
+    margin: 0;
+    border-radius: 50%;
+    background: #fff;
+    transition: transform 0.15s ease;
+}
+
+.smtp-connector .smtp-connector-switch__input[type="checkbox"]:checked {
+    background: var(--sc-accent);
+}
+
+.smtp-connector .smtp-connector-switch__input[type="checkbox"]:checked::before {
+    transform: translateX(18px);
+}
+
+.smtp-connector .smtp-connector-switch__input[type="checkbox"]:focus-visible {
+    outline: 2px solid var(--sc-accent);
+    outline-offset: 2px;
+}
+
+/* Quick setup */
+
+.smtp-connector-providers {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.smtp-connector-provider {
+    padding: 8px 16px;
+    background: var(--sc-card);
+    border: 1px solid var(--sc-line);
+    border-radius: 999px;
+    color: var(--sc-ink);
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.smtp-connector-provider:hover {
+    border-color: var(--sc-accent);
+    color: var(--sc-accent);
+}
+
+.smtp-connector-provider:focus-visible {
+    outline: 2px solid var(--sc-accent);
+    outline-offset: 2px;
+}
+
+.smtp-connector-provider[aria-pressed="true"] {
+    background: var(--sc-accent);
+    border-color: var(--sc-accent);
+    color: #fff;
+}
+
+.smtp-connector-providers__hint {
+    margin: 14px 0 0;
+    padding: 10px 14px;
+    background: #f6f7f7;
+    border-left: 3px solid var(--sc-accent);
+    border-radius: 4px;
+}
+
+/* Save bar stays in view on long forms */
+
+.smtp-connector-savebar {
+    position: sticky;
+    bottom: 0;
+    z-index: 2;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px 16px;
+    margin: 0 0 var(--sc-gap);
+    padding: 14px 24px;
+    background: rgba(255, 255, 255, 0.96);
+    border: 1px solid var(--sc-line);
+    border-radius: var(--sc-radius);
+    box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.06);
+}
+
+.smtp-connector-savebar__hint {
+    color: var(--sc-muted);
+}
+
+/* Delivery route */
+
+.smtp-connector-route {
+    position: relative;
+    margin: 16px 0;
+    padding: 0;
+    list-style: none;
+}
+
+.smtp-connector-route__stop {
+    position: relative;
+    margin: 0;
+    padding: 0 0 18px 28px;
+}
+
+.smtp-connector-route__stop:last-child {
+    padding-bottom: 0;
+}
+
+/* Dot on each stop, joined by the line between them */
+.smtp-connector-route__stop::before {
+    content: "";
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    width: 10px;
+    height: 10px;
+    border: 2px solid var(--sc-route, var(--sc-muted));
+    border-radius: 50%;
+    background: var(--sc-card);
+}
+
+.smtp-connector-route__stop:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    top: 18px;
+    bottom: 0;
+    left: 10px;
+    border-left: 2px solid var(--sc-route, var(--sc-muted));
+}
+
+.smtp-connector-route__stop--server::before {
+    background: var(--sc-route, var(--sc-muted));
+}
+
+.smtp-connector-status--active {
+    --sc-route: var(--sc-ok);
+}
+
+.smtp-connector-status--inactive {
+    --sc-route: var(--sc-warn);
+}
+
+.smtp-connector-status--inactive .smtp-connector-route__stop:not(:last-child)::after {
+    border-left-style: dashed;
+}
+
+.smtp-connector-status--paused {
+    --sc-route: var(--sc-error);
+}
+
+.smtp-connector-route__label {
+    display: block;
+    color: var(--sc-muted);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+.smtp-connector-route__value {
+    display: block;
+    overflow-wrap: anywhere;
+    font-weight: 500;
+}
+
+code.smtp-connector-route__value {
+    padding: 0;
+    background: none;
+    font-family: var(--sc-mono);
+    font-size: 13px;
+}
+
+.smtp-connector-route__meta {
+    display: inline-block;
+    margin-top: 4px;
+    padding: 1px 8px;
+    background: #f0f0f1;
+    border-radius: 4px;
+    font-family: var(--sc-mono);
+    font-size: 11px;
+}
+
+.smtp-connector-status__text {
+    margin: 0 0 12px;
+    color: var(--sc-muted);
+}
+
+/* Help card */
+
+.smtp-connector-help__links {
+    margin: 8px 0 12px;
+}
+
+.smtp-connector-help__links li {
+    margin-bottom: 6px;
+}
+
+.smtp-connector-help__author {
+    margin: 0;
+    padding-top: 12px;
+    border-top: 1px solid var(--sc-line);
+    color: var(--sc-muted);
+}
+
+/* Test email */
+
+.smtp-connector-inline-form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.smtp-connector-inline-form .smtp-connector-input {
+    flex: 1 1 260px;
+    width: auto;
+}
+
+/* Email log */
+
+.smtp-connector-log-card {
+    padding: 16px 20px;
+}
+
+.smtp-connector__intro {
+    margin: 0;
+    color: var(--sc-muted);
+}
+
+.smtp-connector-log-toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    margin: 12px 0 0;
+}
+
+.smtp-connector-log-toolbar form {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+    margin: 0;
+}
+
+.smtp-connector-log .column-to {
+    width: 25%;
+}
+
+.smtp-connector-log .column-status {
+    width: 22%;
+}
+
+.smtp-connector-log .column-date {
+    width: 18%;
+}
+
+.smtp-connector-log td {
+    word-wrap: break-word;
+    overflow-wrap: anywhere;
+}
+
+.smtp-connector-log .smtp-view-email {
+    text-align: start;
+    font-weight: 600;
+    overflow-wrap: anywhere;
+}
+
+@media screen and (max-width: 782px) {
+    /* WordPress 7 labels every responsive td cell; the subject cell needs no label. */
+    table.smtp-connector-log.wp-list-table tr:not(.no-items) td.column-primary::before {
+        display: none;
+    }
+
+    /* There is no checkbox column, so every detail row below the subject gets the full width. */
+    table.smtp-connector-log.wp-list-table tr td:nth-child(n+2) {
+        flex: 0 1 100%;
+    }
+
+    /* WordPress hides the email count above the table on phones; with a single page nothing is left. */
+    .smtp-connector-log-card .smtp-connector-tablenav--single {
+        display: none;
+    }
+
+    .smtp-connector-log-card .smtp-connector-log {
+        margin-top: 16px;
+    }
+}
+
+span.smtp-connector-status {
+    display: inline-block;
+    padding: 1px 8px;
+    border-radius: 10px;
+    font-size: 12px;
+    line-height: 1.8;
+    font-weight: 600;
+    background: #f0f0f1;
+    color: #50575e;
+}
+
+span.smtp-connector-status--sent {
+    background: var(--sc-ok-tint);
+    color: var(--sc-ok-ink);
+}
+
+span.smtp-connector-status--failed {
+    background: var(--sc-error-tint);
+    color: var(--sc-error-ink);
+}
+
+.smtp-connector-error {
+    margin: 4px 0 0;
+    color: var(--sc-error-ink);
+    font-size: 12px;
+}
+
+/* Buttons that delete data */
+
+.smtp-connector .button.delete {
+    color: #b32d2e;
+    border-color: #b32d2e;
+}
+
+.smtp-connector .button.delete:hover,
+.smtp-connector .button.delete:focus {
+    color: #fff;
+    background: #b32d2e;
+    border-color: #b32d2e;
+}
+
+.smtp-connector .button.delete:focus {
+    box-shadow: 0 0 0 1px #fff, 0 0 0 3px #b32d2e;
+}
+
+/* Small screens */
+
+@media screen and (max-width: 600px) {
+    .smtp-connector-header,
+    .smtp-connector-card {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
+    .smtp-connector-fields {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .smtp-connector-fields .smtp-connector-field--port {
+        max-width: none;
+    }
+
+    .smtp-connector-segmented {
+        display: flex;
+    }
+
+    .smtp-connector-segmented label {
+        flex: 1;
+        min-width: 0;
+    }
+
+    /* On phones the on-screen keyboard and a sticky bar would cover the fields. */
+    .smtp-connector-savebar {
+        position: static;
+        padding: 12px 16px;
+        box-shadow: none;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .smtp-connector .smtp-connector-switch__input[type="checkbox"],
+    .smtp-connector .smtp-connector-switch__input[type="checkbox"]::before {
+        transition: none;
+    }
+}
+
+/* Email viewer dialog */
+
+body.smtp-connector-modal-open {
+    overflow: hidden;
+}
+
+.smtp-connector-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 100100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.smtp-connector-modal[hidden] {
+    display: none;
+}
+
+.smtp-connector-modal__backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+}
+
+.smtp-connector-modal__dialog {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 800px;
+    max-height: calc(100vh - 40px);
+    background: #fff;
+    border-radius: var(--sc-radius, 8px);
+    box-shadow: 0 5px 30px rgba(0, 0, 0, 0.3);
+}
+
+.smtp-connector-modal__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 12px 16px;
+    border-bottom: 1px solid #dcdcde;
+}
+
+.smtp-connector-modal__header h2 {
+    margin: 0;
+    font-size: 1.2em;
+    overflow-wrap: anywhere;
+}
+
+.smtp-connector-modal__close {
+    flex-shrink: 0;
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    border: 0;
+    border-radius: 4px;
+    background: none;
+    color: #50575e;
+    cursor: pointer;
+}
+
+.smtp-connector-modal__close:hover,
+.smtp-connector-modal__close:focus {
+    background: #f0f0f1;
+    color: #1d2327;
+}
+
+.smtp-connector-modal__close .dashicons {
+    width: 24px;
+    height: 24px;
+    font-size: 24px;
+}
+
+.smtp-connector-modal__meta {
+    display: grid;
+    grid-template-columns: max-content minmax(0, 1fr);
+    gap: 4px 12px;
+    margin: 0;
+    padding: 12px 16px;
+    border-bottom: 1px solid #dcdcde;
+}
+
+.smtp-connector-modal__meta dt {
+    font-weight: 600;
+}
+
+.smtp-connector-modal__meta dd {
+    margin: 0;
+    overflow-wrap: anywhere;
+}
+
+.smtp-connector-modal__body {
+    flex: 1;
+    min-height: 0;
+    overflow: auto;
+    padding: 16px;
+}
+
+.smtp-connector-modal__frame {
+    display: block;
+    width: 100%;
+    height: 60vh;
+    border: 1px solid #dcdcde;
+    background: #fff;
+}
+
+.smtp-connector-modal__text {
+    margin: 0;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+    font-family: Consolas, Monaco, monospace;
+    font-size: 13px;
+}
